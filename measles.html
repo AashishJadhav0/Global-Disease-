@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Measles (Morbillivirus)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #28a745;
+    }
+    h2 {
+      color: #007bff;
+    }
+    .back-button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .chart-container {
+      margin-top: 30px;
+    }
+    .news {
+      background: #eef;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 4px solid #007bff;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Measles (Morbillivirus)</h1>
+    <p><strong>Description:</strong> Measles is a highly contagious viral disease caused by the Morbillivirus. It primarily affects children and can lead to serious health complications, including pneumonia, encephalitis, and death.</p>
+
+    <h2>Symptoms</h2>
+    <ul>
+      <li>High fever</li>
+      <li>Cough</li>
+      <li>Runny nose</li>
+      <li>Red, watery eyes</li>
+      <li>Rash that usually starts on the face and spreads</li>
+    </ul>
+
+    <h2>History</h2>
+    <p>Measles has been known since at least the 9th century. Widespread vaccination programs began in the 1960s, drastically reducing its prevalence in many parts of the world.</p>
+
+    <h2>Present Condition</h2>
+    <p>Despite the availability of a vaccine, outbreaks still occur due to vaccine hesitancy and lack of access in some regions. Surveillance and rapid response are critical to containment.</p>
+
+    <h2>Future Outlook</h2>
+    <p>Efforts continue worldwide to eliminate measles through vaccination and education. Research into better vaccine delivery methods is ongoing.</p>
+
+    <h2>Latest News</h2>
+    <div class="news">WHO issues alert on rising measles cases in several countries.</div>
+    <div class="news">New vaccination campaign launched in high-risk regions.</div>
+    <div class="news">Study shows increased efficacy of combined MMR vaccine.</div>
+
+    <h2>Graph: Country-Wise Cases</h2>
+    <div class="chart-container">
+      <canvas id="diseaseChart" width="800" height="400"></canvas>
+    </div>
+
+    <h2>Prevention Tips</h2>
+    <ul>
+      <li>Get vaccinated with the MMR (Measles, Mumps, Rubella) vaccine.</li>
+      <li>Maintain good hygiene and handwashing.</li>
+      <li>Avoid close contact with infected individuals.</li>
+      <li>Follow local health guidelines during outbreaks.</li>
+    </ul>
+
+    <a href="diseases.html" class="back-button">← Back to Diseases</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('diseaseChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['USA', 'India', 'Nigeria', 'Brazil', 'Philippines'],
+        datasets: [{
+          label: 'Reported Cases',
+          data: [15000, 50000, 60000, 10000, 40000],
+          backgroundColor: 'rgba(0, 123, 255, 0.7)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

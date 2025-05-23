@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influenza | Global Disease Surveillance</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="disease-header">
+        <div class="container">
+            <h1><i class="fas fa-virus"></i> Influenza (Flu)</h1>
+            <p>Orthomyxoviridae family</p>
+        </div>
+    </header>
+
+    <nav class="disease-nav">
+        <div class="container">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="container disease-container">
+        <section id="description" class="disease-section">
+            <h2><i class="fas fa-info-circle"></i> Description</h2>
+            <p>Influenza is a contagious respiratory illness caused by influenza viruses that infect the nose, throat, and sometimes the lungs. It can cause mild to severe illness and sometimes lead to death. The best way to prevent flu is by getting a flu vaccine each year.</p>
+        </section>
+
+        <section id="statistics" class="disease-section">
+            <h2><i class="fas fa-chart-bar"></i> Global Statistics</h2>
+            <div class="chart-container">
+                <canvas id="globalTrendChart"></canvas>
+            </div>
+            <div class="chart-description">
+                <p>Annual influenza epidemics result in about 3-5 million cases of severe illness and about 290,000-650,000 respiratory deaths worldwide.</p>
+            </div>
+        </section>
+
+        <section id="symptoms" class="disease-section">
+            <h2><i class="fas fa-thermometer-half"></i> Symptoms</h2>
+            <div class="symptoms-grid">
+                <div class="symptom-card">
+                    <h3>Common Symptoms</h3>
+                    <ul>
+                        <li>Fever or feeling feverish/chills</li>
+                        <li>Cough</li>
+                        <li>Sore throat</li>
+                        <li>Runny or stuffy nose</li>
+                        <li>Muscle or body aches</li>
+                    </ul>
+                </div>
+                <div class="symptom-card">
+                    <h3>Emergency Symptoms</h3>
+                    <ul>
+                        <li>Difficulty breathing</li>
+                        <li>Persistent chest pain</li>
+                        <li>Severe muscle pain</li>
+                        <li>Seizures</li>
+                        <li>Bluish lips or face</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="perspectives" class="disease-section">
+            <h2><i class="fas fa-hourglass-half"></i> Historical, Current and Future Perspectives</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>1918</h3>
+                    <p>Spanish Flu pandemic infects 500 million people worldwide</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Current</h3>
+                    <p>Seasonal flu causes 3-5 million severe cases annually worldwide</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Future</h3>
+                    <p>Universal flu vaccine research shows promise for broader protection</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="disease-section">
+            <h2><i class="far fa-newspaper"></i> Latest News</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <h3>New Flu Strain Detected</h3>
+                    <p>WHO reports new influenza variant with potential pandemic risk...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </article>
+                <article class="news-card">
+                    <h3>Vaccine Effectiveness Study</h3>
+                    <p>CDC study shows this year's flu vaccine is 60% effective...</p>
+                    <a href="#" class="read-more">Read More</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="country-data" class="disease-section">
+            <h2><i class="fas fa-globe-americas"></i> Country-Specific Data</h2>
+            <div class="country-selector">
+                <select id="countrySelect">
+                    <option value="">Select Country</option>
+                    <option value="US">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="JP">Japan</option>
+                </select>
+            </div>
+            <div class="chart-container">
+                <canvas id="countryChart"></canvas>
+            </div>
+        </section>
+
+        <section id="prevention" class="disease-section">
+            <h2><i class="fas fa-shield-virus"></i> Prevention Tips</h2>
+            <div class="prevention-grid">
+                <div class="prevention-card">
+                    <i class="fas fa-syringe"></i>
+                    <h3>Get Vaccinated</h3>
+                    <p>Annual flu vaccine is the best way to prevent influenza</p>
+                </div>
+                <div class="prevention-card">
+                    <i class="fas fa-hands-wash"></i>
+                    <h3>Wash Hands</h3>
+                    <p>Frequent hand washing reduces transmission</p>
+                </div>
+                <div class="prevention-card">
+                    <i class="fas fa-head-side-mask"></i>
+                    <h3>Wear Masks</h3>
+                    <p>Masks can help prevent spread in crowded areas</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="disease-footer">
+        <div class="container">
+            <p>Data sources: WHO, CDC, ECDC | Last updated: <span id="currentDate"></span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Global Trends Chart
+        const globalCtx = document.getElementById('globalTrendChart').getContext('2d');
+        new Chart(globalCtx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
+                datasets: [{
+                    label: 'Estimated Cases (millions)',
+                    data: [45, 39, 18, 32, 38, 42],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Global Influenza Cases'
+                    }
+                }
+            }
+        });
+
+        // Country Data Chart
+        const countryCtx = document.getElementById('countryChart').getContext('2d');
+        let countryChart = new Chart(countryCtx, {
+            type: 'bar',
+            data: {},
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Select a country to view data'
+                    }
+                }
+            }
+        });
+
+        // Update country chart when selection changes
+        document.getElementById('countrySelect').addEventListener('change', function() {
+            const country = this.value;
+            if (country) {
+                // In a real app, you would fetch this data from an API
+                const sampleData = {
+                    'US': [12, 10, 8, 15, 13, 11],
+                    'UK': [3, 2.5, 1.8, 3.2, 2.9, 3.1],
+                    'JP': [8, 7, 5, 9, 8.5, 7.8]
+                };
+                
+                countryChart.data.labels = ['2018', '2019', '2020', '2021', '2022', '2023'];
+                countryChart.data.datasets = [{
+                    label: `Cases in ${this.options[this.selectedIndex].text} (millions)`,
+                    data: sampleData[country],
+                    backgroundColor: '#e74c3c'
+                }];
+                countryChart.options.plugins.title.text = `Influenza in ${this.options[this.selectedIndex].text}`;
+                countryChart.update();
+            }
+        });
+
+        // Update current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
